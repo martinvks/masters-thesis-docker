@@ -1,0 +1,20 @@
+version: '3.9'
+services:
+  frontend:
+    image: martinvks/frontend_traefik
+    ports:
+      - "443:443"
+    secrets:
+      - source: certificate
+        target: cert
+      - source: certificate-key
+        target: cert.key
+  backend:
+    image: martinvks/backend_spring-boot-tomcat
+    expose:
+      - "8080"
+secrets:
+  certificate:
+    file: "${DOCKER_DEV_CERTIFICATE}"
+  certificate-key:
+    file: "${DOCKER_DEV_CERTIFICATE_KEY}"

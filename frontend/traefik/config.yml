@@ -1,0 +1,15 @@
+http:
+  routers:
+    to-backend:
+      tls: {}
+      rule: "PathPrefix(`/`)"
+      service: backend
+  services:
+    backend:
+      loadBalancer:
+        servers:
+          - url: http://backend:8080/
+tls:
+  certificates:
+    - certFile: /run/secrets/cert
+      keyFile: /run/secrets/cert.key
