@@ -1,7 +1,7 @@
 version: '3.9'
 services:
   frontend:
-    image: martinvks/frontend_traefik
+    image: martinvks/frontend_envoy
     ports:
       - "443:443"
       - "443:443/udp"

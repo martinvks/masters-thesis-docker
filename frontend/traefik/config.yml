@@ -1,9 +1,20 @@
 http:
   routers:
+    to-admin:
+      tls: {}
+      middlewares:
+        - "block-all"
+      rule: "PathPrefix(`/admin`)"
+      service: backend
     to-backend:
       tls: {}
       rule: "PathPrefix(`/`)"
       service: backend
+  middlewares:
+    block-all:
+      ipWhitelist:
+        sourceRange:
+          - "0.0.0.0/32"
   services:
     backend:
       loadBalancer:

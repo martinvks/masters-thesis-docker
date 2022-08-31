@@ -1,6 +1,9 @@
+experimental:
+  http3: true
 entryPoints:
   websecure:
     address: ":443"
+    http3: {}
 providers:
   file:
     filename: "/etc/traefik/config.yml"
