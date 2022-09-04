@@ -1,17 +1,21 @@
 version: '3.9'
 services:
-  frontend:
-    image: martinvks/frontend_traefik
+  hitch:
+    image: martinvks/frontend_hitch
     ports:
       - "443:443"
-      - "443:443/udp"
     secrets:
       - source: certificate
         target: cert
       - source: certificate-key
         target: cert.key
+  varnish:
+    image: martinvks/frontend_varnish
+    expose:
+      - "80"
+      - "8443"
   backend:
-    image: martinvks/backend_spring-boot-tomcat
+    image: "${DOCKER_BACKEND_IMAGE}"
     expose:
       - "8080"
 secrets:

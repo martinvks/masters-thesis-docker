@@ -1,7 +1,7 @@
-# master-docker
+# Master Docker
 
-Source code for docker images used for testing different combinations of frontends and backends,
-and protocol translation between different HTTP versions.
+Source code for docker images used in master's thesis investigating the semantic gap in HTTP protocols.
+![Flowchart](./flowchart.svg)
 
 ## Frontend
 
@@ -29,11 +29,34 @@ The source code for the backend docker images are in the `./backend` folder.
 They are configured to:
 
 - Run on port 8080
-- Serve static HTML files
+- Serve static HTML files over HTTP/1.1
 
 Images:
 - `martinvks/backend_spring-boot-tomcat`
 
-
 ## Compose
-![Flowchart](./flow.svg)
+
+The `docker-compose.yml` file can be used to set up a test environment using a specific frontend and backend image.  
+The following environment variables must be set:
+
+| Key                        | Description                                     | Example value                        |
+|----------------------------|-------------------------------------------------|--------------------------------------|
+| DOCKER_FRONTEND_IMAGE      | Docker image to use as frontend                 | martinvks/frontend_envoy             |
+| DOCKER_BACKEND_IMAGE       | Docker image to use as backend                  | martinvks/backend_spring-boot-tomcat |
+| DOCKER_DEV_CERTIFICATE     | File with certificate data in PEM format        | ./fullchain.pem                      |
+| DOCKER_DEV_CERTIFICATE_KEY | File with certificate private key in PEM format | ./privkey.pem                        |
+
+Example:
+```
+$ cat .env
+DOCKER_FRONTEND_IMAGE=martinvks/frontend_envoy
+DOCKER_BACKEND_IMAGE=martinvks/backend_spring-boot-tomcat
+DOCKER_DEV_CERTIFICATE=./fullchain.pem
+DOCKER_DEV_CERTIFICATE_KEY=./privkey.pem
+$ docker compose up
+```
+
+**NB**  
+The open-source version of Varnish does not provide TLS termination.  
+For Varnish frontend use the `docker-compose-varnish.yml` file instead, which uses
+[Hitch](https://www.varnish-software.com/community/hitch/) as TLS proxy.
