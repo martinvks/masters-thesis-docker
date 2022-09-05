@@ -1,6 +1,6 @@
 # Master Docker
 
-Source code for docker images used in master's thesis investigating the semantic gap in HTTP protocols.
+Source code for docker images used in master's thesis to investigate the semantic gap in HTTP protocols.
 ![Flowchart](./flowchart.svg)
 
 ## Frontend
@@ -14,14 +14,14 @@ They are based on the official docker images provided by the vendors and configu
 - Forward requests to a docker container with name `backend` running in the same docker network on port 8080 using
   HTTP/1.1
 
-| Images                                                    | HTTP/2 downstream  | HTTP/3 downstream  |
-|-----------------------------------------------------------|--------------------|--------------------|
-| `martinvks/frontend_apache2`                              | :white_check_mark: | :x:                |
-| `martinvks/frontend_envoy`                                | :white_check_mark: | :white_check_mark: |
-| `martinvks/frontend_haproxy`                              | :white_check_mark: | :x:                |
-| `martinvks/frontend_nginx`                                | :white_check_mark: | :x:                |
-| `martinvks/frontend_traefik`                              | :white_check_mark: | :white_check_mark: |
-| `martinvks/frontend_hitch` + `martinvks/frontend_varnish` | :white_check_mark: | :x:                |
+| Images                       | HTTP/2 downstream  | HTTP/3 downstream  |
+|------------------------------|--------------------|--------------------|
+| `martinvks/frontend_apache2` | :white_check_mark: | :x:                |
+| `martinvks/frontend_envoy`   | :white_check_mark: | :white_check_mark: |
+| `martinvks/frontend_haproxy` | :white_check_mark: | :x:                |
+| `martinvks/frontend_nginx`   | :white_check_mark: | :x:                |
+| `martinvks/frontend_traefik` | :white_check_mark: | :white_check_mark: |
+| `martinvks/frontend_varnish` | :white_check_mark: | :x:                |
 
 ## Backend
 
@@ -36,7 +36,7 @@ Images:
 
 ## Compose
 
-The `docker-compose.yml` file can be used to set up a test environment using a specific frontend and backend image.  
+The `docker-compose.yml` file can be used to set up a test environment using a specific frontend and backend image.
 The following environment variables must be set:
 
 | Key                        | Description                                     | Example value                        |
@@ -54,9 +54,15 @@ DOCKER_BACKEND_IMAGE=martinvks/backend_spring-boot-tomcat
 DOCKER_DEV_CERTIFICATE=./fullchain.pem
 DOCKER_DEV_CERTIFICATE_KEY=./privkey.pem
 $ docker compose up
+...
 ```
 
-**NB**  
+### Varnish
+
 The open-source version of Varnish does not provide TLS termination.  
 For Varnish frontend use the `docker-compose-varnish.yml` file instead, which uses
 [Hitch](https://www.varnish-software.com/community/hitch/) as TLS proxy.
+
+### Packet capture
+
+Packet capturing is enabled on the backend and the pcap file is written to `./capture/backend.pcap`

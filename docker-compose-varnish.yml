@@ -18,6 +18,14 @@ services:
     image: "${DOCKER_BACKEND_IMAGE}"
     expose:
       - "8080"
+  tcpdump:
+    image: nicolaka/netshoot
+    depends_on:
+      - backend
+    command: tcpdump -i eth0 -w /capture/backend.pcap port 8080
+    network_mode: service:backend
+    volumes:
+      - $PWD/capture:/capture
 secrets:
   certificate:
     file: "${DOCKER_DEV_CERTIFICATE}"
