@@ -7,5 +7,7 @@
 target
 .idea
 capture
+node_modules
 *.iml
 .env
+.DS_STORE

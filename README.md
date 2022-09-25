@@ -32,6 +32,7 @@ They are configured to:
 - Serve static HTML files over HTTP/1.1
 
 Images:
+- `martinvks/backend_express`
 - `martinvks/backend_spring-boot-tomcat`
 
 ## Compose
