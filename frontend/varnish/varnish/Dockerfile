@@ -1,3 +1,3 @@
-FROM varnish:7.1
+FROM varnish:7.2
 
 COPY default.vcl /etc/varnish/
