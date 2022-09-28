@@ -17,6 +17,7 @@ They are based on the official docker images provided by the vendors and configu
 | Images                       | HTTP/2 downstream  | HTTP/3 downstream  |
 |------------------------------|--------------------|--------------------|
 | `martinvks/frontend_apache2` | :white_check_mark: | :x:                |
+| `martinvks/frontend_caddy`   | :white_check_mark: | :white_check_mark: |
 | `martinvks/frontend_envoy`   | :white_check_mark: | :white_check_mark: |
 | `martinvks/frontend_haproxy` | :white_check_mark: | :x:                |
 | `martinvks/frontend_nginx`   | :white_check_mark: | :x:                |

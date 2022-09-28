@@ -11,7 +11,7 @@ sub vcl_recv {
         return (pass);
     }
 
-   if (req.url ~ "^/admin.html") {
+   if (req.url ~ "^/admin") {
         return (synth(403, "Forbidden"));
    }
 }

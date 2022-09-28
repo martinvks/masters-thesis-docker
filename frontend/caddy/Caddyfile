@@ -1,0 +1,7 @@
+:443 {
+	tls /run/secrets/cert /run/secrets/cert.key
+	respond /admin* "Forbidden" 403 {
+		close
+	}
+	reverse_proxy backend:8080
+}
