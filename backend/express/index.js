@@ -5,7 +5,11 @@ const port = 8080
 app.use(express.static('public'))
 app.use(express.urlencoded())
 
-app.post('/echo', function (req, res) {
+app.get('/admin', (req, res) => {
+    res.send("Hello from express admin endpoint")
+});
+
+app.post('/echo', (req, res) => {
     var name = req.body.param
     res.send(name)
 });
