@@ -3,7 +3,7 @@ const app = express()
 const port = 8080
 
 app.use(express.static('public'))
-app.use(express.urlencoded())
+app.use(express.urlencoded({extended: true}))
 
 app.get('/admin', (req, res) => {
     res.send("Hello from express admin endpoint")
