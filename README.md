@@ -30,10 +30,12 @@ The source code for the backend docker images are in the `./backend` folder.
 They are configured to:
 
 - Run on port 8080
-- Serve static HTML files over HTTP/1.1
+- Respond with an index.html on requests to `/` and `/index.html`
+- Respond with a text message on requests to `/admin`
 
 Images:
 - `martinvks/backend_express`
+- `martinvks/backend_gin`
 - `martinvks/backend_spring-boot-tomcat`
 
 ## Compose
