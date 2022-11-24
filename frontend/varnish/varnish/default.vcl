@@ -7,10 +7,6 @@ backend default {
 }
 
 sub vcl_recv {
-    if (req.url ~ "^/nocache") {
-        return (pass);
-    }
-
    if (req.url ~ "^/admin") {
         return (synth(403, "Forbidden"));
    }

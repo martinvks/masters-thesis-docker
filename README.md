@@ -6,7 +6,7 @@ Source code for docker images used in master's thesis to investigate the semanti
 ## Frontend
 
 The source code for the frontend docker images are in the `./frontend` folder.  
-They are based on the official docker images provided by the vendors and configured to:
+The frontends are configured to:
 
 - Enable downstream HTTP/2
 - Enable downstream HTTP/3 (if supported)
@@ -14,15 +14,16 @@ They are based on the official docker images provided by the vendors and configu
 - Forward requests to a docker container with name `backend` running in the same docker network on port 8080 using
   HTTP/1.1
 
-| Images                       | HTTP/2 downstream  | HTTP/3 downstream  |
-|------------------------------|--------------------|--------------------|
-| `martinvks/frontend_apache2` | :white_check_mark: | :x:                |
-| `martinvks/frontend_caddy`   | :white_check_mark: | :white_check_mark: |
-| `martinvks/frontend_envoy`   | :white_check_mark: | :white_check_mark: |
-| `martinvks/frontend_haproxy` | :white_check_mark: | :x:                |
-| `martinvks/frontend_nginx`   | :white_check_mark: | :x:                |
-| `martinvks/frontend_traefik` | :white_check_mark: | :white_check_mark: |
-| `martinvks/frontend_varnish` | :white_check_mark: | :x:                |
+| Images                                     | HTTP/2 downstream  | HTTP/3 downstream  |
+|--------------------------------------------|--------------------|--------------------|
+| `martinvks/frontend_apache2`               | :white_check_mark: | :x:                |
+| `martinvks/frontend_apache_traffic_server` | :white_check_mark: | :x:                |
+| `martinvks/frontend_caddy`                 | :white_check_mark: | :white_check_mark: |
+| `martinvks/frontend_envoy`                 | :white_check_mark: | :white_check_mark: |
+| `martinvks/frontend_haproxy`               | :white_check_mark: | :x:                |
+| `martinvks/frontend_nginx`                 | :white_check_mark: | :x:                |
+| `martinvks/frontend_traefik`               | :white_check_mark: | :white_check_mark: |
+| `martinvks/frontend_varnish`               | :white_check_mark: | :x:                |
 
 ## Backend
 
