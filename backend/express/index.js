@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const port = 8080
 
-app.use(express.static('public'))
+app.use(express.static('public', { maxAge: 100000}))
 app.use(express.urlencoded({extended: true}))
 
 app.get('/admin', (req, res) => {
